@@ -1,0 +1,7 @@
+{
+  "name": "vida-es-salud-i",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
