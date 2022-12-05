@@ -4,7 +4,12 @@ const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
   appName: 'vida-es-salud-i',
   webDir: 'build',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  server: {
+    androidScheme: "http",
+    allowNavigation: ["http://192.168.1.100:8081"],
+    cleartext: true,
+  },
 };
 
 export default config;
