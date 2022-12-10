@@ -1,7 +1,7 @@
 import {IonButton, IonCard, IonGrid, IonImg, IonInput, IonItem, IonLabel, IonRow, useIonAlert, useIonLoading,} from '@ionic/react';
 import { text } from 'ionicons/icons';
 import { useState } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import Logo from '../assets/logo.svg'
 import { environment } from './enviroment';
 
@@ -13,6 +13,7 @@ const Login = () => {
   const [red, setred] = useState(0)
   const [loading, dismiss] = useIonLoading()
   const [alert] = useIonAlert()
+  const history = useHistory()
 
   const handleUser = (e) =>{
     setuser(e.target.value);
@@ -65,7 +66,8 @@ const Login = () => {
   }
   
   const register = () =>{
-    setred(1)
+    history.push('/register');
+    //setred(1)
   }
     
   return (

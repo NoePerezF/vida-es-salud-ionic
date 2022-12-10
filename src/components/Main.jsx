@@ -13,7 +13,7 @@ const Main = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/main" exact={true}>
-              <Redirect to="/main/page/Inbox" />
+              <Redirect to="/main/page/Inicio" />
             </Route>
             <Route path="/main/page/:name" >
               <Page />

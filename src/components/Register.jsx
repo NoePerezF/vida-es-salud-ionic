@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonGrid, IonImg, IonInput, IonItem, IonLabel, IonRow, useIonAlert } from "@ionic/react"
+import { IonButton, IonCard, IonContent, IonGrid, IonImg, IonInput, IonItem, IonLabel, IonRow, useIonAlert } from "@ionic/react"
 import { useState } from "react"
 import Logo from "../assets/logo.svg"
 import { environment } from "./enviroment"
@@ -85,9 +85,10 @@ const Register = () => {
     }
 
   return (
+    <IonContent fullscreen={true} className="ion-padding">
     <IonGrid style={{height: "100%"}}>
         <IonRow className='ion-justify-content-center ion-align-items-center' style={{height: "100%"}}>
-            <IonCard className='ion-text-center ion-padding'>
+            <IonCard className='ion-text-center ion-padding scroll-content'>
                 <IonImg src={Logo} style={{height: "250px",width: "250px"}}/>
 
                     <IonItem className='ion-margin-bottom'>
@@ -135,6 +136,7 @@ const Register = () => {
          </IonCard>
         </IonRow>
     </IonGrid>
+    </IonContent>
   )
 }
 
