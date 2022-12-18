@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
 import banner from '../assets/BANNER1.svg'
+import Negocios from '../components/Negocios';
 
 const Page: React.FC = () => {
 
@@ -26,6 +27,7 @@ const Page: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         {name == 'Inicio' && <IonImg src={banner}></IonImg>}
+        {name == 'Negocios' && <Negocios/>}
       </IonContent>
     </IonPage>
   );
