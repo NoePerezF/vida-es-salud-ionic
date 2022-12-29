@@ -5,7 +5,7 @@ import { Redirect, useHistory } from 'react-router';
 import Logo from '../assets/logo.svg'
 import { environment } from './enviroment';
 
-const Login = () => {
+const Login = ({setUsuario}) => {
   const env = environment
 
   const [user, setuser] = useState('')
@@ -50,6 +50,8 @@ const Login = () => {
     await res.status === 200 ?
     responseJson = await res.json() :
     responseJson = await res.text()
+    res.status === 200 &&
+    await setUsuario(responseJson)
     await res.status !== 200 &&
     alert({
       header: responseJson,

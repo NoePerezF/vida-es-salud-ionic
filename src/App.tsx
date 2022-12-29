@@ -23,15 +23,23 @@ import './theme/variables.css';
 import Login from './components/Login';
 import Main from './components/Main';
 import Register from './components/Register';
+import { useState } from 'react';
 
 setupIonicReact();
 
 const App: React.FC = () => {
+
+  const [usuario, setusuario] = useState({})
+
   return (
     <IonApp>
       <IonReactRouter>
-        <Route exact path={"/"} component={Login} />
-        <Route path={"/main"} component={Main} />
+        <Route exact path={"/"} >
+          <Login setUsuario = {setusuario}/>
+        </Route>
+        <Route path={"/main"}>
+          <Main usuario = {usuario}/>
+        </Route>
         <Route path={"/register"} component={Register}/>
       </IonReactRouter>
     </IonApp>

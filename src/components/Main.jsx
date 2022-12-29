@@ -4,8 +4,9 @@ import React from 'react'
 import { Redirect, Route } from 'react-router'
 import Page from '../pages/Page'
 import Menu from './Menu'
+import ProgramarCita from './ProgramarCita'
 
-const Main = () => {
+const Main = ({usuario}) => {
   return (
     <IonPage>
         <IonReactRouter>
@@ -17,6 +18,9 @@ const Main = () => {
             </Route>
             <Route path="/main/page/:name" >
               <Page />
+            </Route>
+            <Route path="/main/programarcita/:servicio" >
+              <ProgramarCita usuario={usuario} />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
