@@ -1,6 +1,6 @@
-import { IonItem, IonLabel, IonList } from '@ionic/react'
+import { IonItem, IonLabel, IonList, useIonLoading, useIonViewDidEnter, useIonViewDidLeave, useIonViewWillEnter } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import { environment } from './enviroment'
 
 const Negocios = () => {
@@ -8,23 +8,31 @@ const Negocios = () => {
     const env = environment
     const [negocios, setnegocios] = useState([])
     const history = useHistory()
+    const [loading, dismiss] = useIonLoading()
 
-    const getNegocios = async () => {
-        const response = await fetch(env.baseUrl+'negocio/getnegocios',
-        { 
-            headers: { 'Content-Type': 'application/json' },
-            method: 'GET',
-            mode: 'cors', // 
-            cache: 'default',
-          })
-        const resJson = await response.json()
-        setnegocios(resJson)
-     }
+    const location = useLocation();
+
 
      useEffect(() => {
-       return () => {
+        console.log("Useeffect triggered");
+        const getNegocios = async () => {
+            await loading({
+                massage : 'Cargando...',
+                spinner : 'circular'
+              })
+            const response = await fetch(env.baseUrl+'negocio/getnegocios',
+            { 
+                headers: { 'Content-Type': 'application/json' },
+                method: 'GET',
+                mode: 'cors', // 
+                cache: 'default',
+              })
+            const resJson = await response.json()
+            console.log(resJson);
+            await dismiss()
+            setnegocios(resJson)
+         }
          getNegocios()
-       }
      },[])
      
      const getNegocio = (e) =>{

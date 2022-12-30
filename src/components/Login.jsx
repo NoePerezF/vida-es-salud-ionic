@@ -39,6 +39,7 @@ const Login = ({setUsuario}) => {
     }
     const bodyJson = JSON.stringify(data)
     console.log(bodyJson);
+    console.log("Ok se esta actualizando el proyecto")
     const res = await fetch(env.baseUrl+'cliente/login',{ 
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
@@ -62,6 +63,7 @@ const Login = ({setUsuario}) => {
         }
       ]
     })
+    console.log(responseJson);
     await dismiss()
     res.status === 200 &&
     setred(2)

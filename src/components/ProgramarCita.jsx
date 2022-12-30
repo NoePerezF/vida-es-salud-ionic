@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonAlert } from '@ionic/react'
+import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonAlert, useIonLoading } from '@ionic/react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router';
 import { environment } from './enviroment';
@@ -12,8 +12,16 @@ const ProgramarCita = ({usuario}) => {
     const datetime = useRef(null);
     const [minDate, setminDate] = useState("1999-12-25T00:00:00")
     const [horaServer, sethoraServer] = useState("")
+    const [loading, dismiss] = useIonLoading()
+    
 
-    const getDateTimeServer = async () => {
+    useEffect(() => {
+
+      const getDateTimeServer = async () => {
+        await loading({
+          massage : 'Cargando...',
+          spinner : 'circular'
+        })
         const dateTimeResponse = await fetch(env.baseUrl+"negocio/gerhora",
         { 
             method: 'GET',
@@ -23,14 +31,12 @@ const ProgramarCita = ({usuario}) => {
         const dateTime = await dateTimeResponse.text();
         sethoraServer(datetime);
         setminDate((dateTime.split(" ")[0].split("-").reverse().join("-"))+"T"+dateTime.split(" ")[1]);
+        await dismiss()
 
     }
 
-    useEffect(() => {
-      return () => {
         getDateTimeServer()
-      }
-    })
+    },[])
 
 
   const cancel = () => {
@@ -64,6 +70,7 @@ const ProgramarCita = ({usuario}) => {
     console.log(responseJson);
     console.log(datetime.current);
     console.log(datetime.current.value);
+    history.goBack()
   }
 
   const showAlert = () => {
@@ -112,9 +119,9 @@ const ProgramarCita = ({usuario}) => {
         <IonRow class="ion-align-items-center " style={{height : "100%"}}>
           <IonCol>
           <IonRow class="ion-justify-content-center">
-          <IonCol size='6'>
+          <IonCol size='12'>
           <IonDatetime presentation="date-time" ref={datetime}
-          min = {minDate} 
+          min = {minDate} hourCycle="h23"
           minuteValues="0,30" hourValues={"9,10,11,12,13,14,15,16,17,18,19"}  >
           <IonButtons slot="buttons">
         <IonButton color="danger" onClick={cancel}>Cancelar</IonButton>
