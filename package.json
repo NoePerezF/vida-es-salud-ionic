@@ -1,5 +1,5 @@
 {
-  "name": "vida-es-salud-i",
+  "name": "ves cliente",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -21,7 +21,6 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "ionicons": "^6.0.3",
-    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.2.0",

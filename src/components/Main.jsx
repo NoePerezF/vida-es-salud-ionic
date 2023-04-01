@@ -4,6 +4,7 @@ import React from 'react'
 import { Redirect, Route } from 'react-router'
 import Page from '../pages/Page'
 import Menu from './Menu'
+import PrefilNeogcio from './PrefilNeogcio'
 import ProgramarCita from './ProgramarCita'
 
 const Main = ({usuario}) => {
@@ -21,6 +22,9 @@ const Main = ({usuario}) => {
             </Route>
             <Route path="/main/programarcita/:servicio" >
               <ProgramarCita usuario={usuario} />
+            </Route>
+            <Route path="/main/profilenegocio/:idNegocio" >
+              <PrefilNeogcio />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'vida-es-salud-i',
+  appName: 'ves cliente',
   webDir: 'build',
   bundledWebRuntime: false,
   server: {

@@ -4,10 +4,12 @@ import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
 import banner from '../assets/BANNER1.svg'
 import Negocios from '../components/Negocios';
+import PrefilNeogcio from '../components/PrefilNeogcio';
 
 const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
+  const { idNegocio } = useParams<{ idNegocio: string; }>();
 
   return (
     <IonPage>
@@ -28,6 +30,7 @@ const Page: React.FC = () => {
         </IonHeader>
         {name == 'Inicio' && <IonImg src={banner}></IonImg>}
         {name == 'Negocios' && <Negocios/>}
+        {name == 'PerfilNegocio' && <PrefilNeogcio/>}
       </IonContent>
     </IonPage>
   );

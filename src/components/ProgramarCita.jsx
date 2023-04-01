@@ -17,26 +17,28 @@ const ProgramarCita = ({usuario}) => {
 
     useEffect(() => {
 
-      const getDateTimeServer = async () => {
-        await loading({
-          massage : 'Cargando...',
-          spinner : 'circular'
-        })
-        const dateTimeResponse = await fetch(env.baseUrl+"negocio/gerhora",
-        { 
-            method: 'GET',
-            mode: 'cors', // 
-            cache: 'default',
-          })
-        const dateTime = await dateTimeResponse.text();
-        sethoraServer(datetime);
-        setminDate((dateTime.split(" ")[0].split("-").reverse().join("-"))+"T"+dateTime.split(" ")[1]);
-        await dismiss()
-
-    }
+      
 
         getDateTimeServer()
     },[])
+
+    const getDateTimeServer = async () => {
+      await loading({
+        massage : 'Cargando...',
+        spinner : 'circular'
+      })
+      const dateTimeResponse = await fetch(env.baseUrl+"negocio/gerhora",
+      { 
+          method: 'GET',
+          mode: 'cors', // 
+          cache: 'default',
+        })
+      const dateTime = await dateTimeResponse.text();
+      sethoraServer(datetime);
+      setminDate((dateTime.split(" ")[0].split("-").reverse().join("-"))+"T"+dateTime.split(" ")[1]);
+      await dismiss()
+
+  }
 
 
   const cancel = () => {
