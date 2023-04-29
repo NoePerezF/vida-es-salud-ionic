@@ -1,6 +1,6 @@
-import { IonAvatar, IonButtons, IonContent, IonGrid, IonHeader, IonImg, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonLoading } from '@ionic/react'
+import { IonAvatar, IonButton, IonButtons, IonContent, IonGrid, IonHeader, IonImg, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonLoading } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import banner from '../assets/Usuario.svg'
 import { environment } from './enviroment'
 
@@ -9,6 +9,7 @@ const PrefilNeogcio = () => {
     const {idNegocio} = useParams();
     const [loading, dismiss] = useIonLoading()
     const [negocio, setnegocio] = useState(undefined)
+    const history = useHistory()
 
 
     useEffect(() => {
@@ -34,6 +35,9 @@ const PrefilNeogcio = () => {
 
                 await dismiss()
             await setnegocio(resJson)
+    }
+    const routeServicios = () => {
+      history.push(`/main/servicios/${negocio.id}`)
     }
 
 
@@ -64,13 +68,16 @@ const PrefilNeogcio = () => {
         <h1>{negocio && negocio.nombre}</h1>
         </IonRow>
         <IonRow className='ion-justify-content-center'>
-        <p className="title">{negocio && (negocio.direccion?.calle + negocio.direccion?.numero)}</p>
+        <p className="title">Direccion: {negocio && negocio.direccion && (negocio.direccion?.calle + negocio.direccion?.numero)}</p>
         </IonRow>
         <IonRow className='ion-justify-content-center'> 
-        <p>{negocio && (negocio.horario)}</p>
+        <p>Horario: {negocio && (negocio.horario)}</p>
         </IonRow>
         <IonRow className='ion-justify-content-center'> 
-        <p>{negocio && (negocio.email)}</p>
+        <p>Email: {negocio && (negocio.email)}</p>
+        </IonRow>
+        <IonRow className='ion-justify-content-center'>
+          <IonButton onClick={routeServicios}>Ver servicios</IonButton>
         </IonRow>
     </IonGrid>
     </IonContent>

@@ -6,6 +6,7 @@ import Page from '../pages/Page'
 import Menu from './Menu'
 import PrefilNeogcio from './PrefilNeogcio'
 import ProgramarCita from './ProgramarCita'
+import ListaServicios from './ListaServicios'
 
 const Main = ({usuario}) => {
   return (
@@ -25,6 +26,9 @@ const Main = ({usuario}) => {
             </Route>
             <Route path="/main/profilenegocio/:idNegocio" >
               <PrefilNeogcio />
+            </Route>
+            <Route path="/main/servicios/:idNegocio" >
+              <ListaServicios />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
